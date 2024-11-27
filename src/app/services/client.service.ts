@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClientService {
-  private apiUrl = 'https://api.exemplo.com';
+  private apiUrl = 'http://localhost:5162/api/Account';
 
   constructor(private http: HttpClient) {}
 
@@ -14,8 +14,8 @@ export class ClientService {
     return this.http.get(`${this.apiUrl}/clients`);
   }
 
-  addClient(client: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/clients`, client);
+  addClient(account: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/Account`, account);
   }
 
   updateClient(client: any): Observable<any> {

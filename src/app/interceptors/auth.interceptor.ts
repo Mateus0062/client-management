@@ -5,18 +5,21 @@ import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+
   constructor(private authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.authService.getToken();  // Método no AuthService que retorna o token JWT
+    const token = this.authService.getToken(); // Método para pegar o token do localStorage ou serviço de autenticação
+
     if (token) {
       const cloned = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}` // Adiciona o token ao cabeçalho da requisição
+        }
       });
       return next.handle(cloned);
     }
-    return next.handle(req);
+
+    return next.handle(req); // Caso não haja token, a requisição segue sem o cabeçalho de autorização
   }
 }

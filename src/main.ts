@@ -7,6 +7,7 @@ import { LoginComponent } from './app/pages/login/login.component';
 import { ClientsComponent } from './app/pages/clients/clients.component';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { AuthInterceptor } from './app/interceptors/auth.interceptor';
+import { CreateAccountComponent } from './app/pages/create-account/create-account.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -14,7 +15,8 @@ bootstrapApplication(AppComponent, {
     provideRouter([
       { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'clients', component: ClientsComponent }
+      { path: 'clients', component: ClientsComponent },
+      { path: 'create-account', component: CreateAccountComponent }
     ]),
     {
       provide: HTTP_INTERCEPTORS,
@@ -23,3 +25,4 @@ bootstrapApplication(AppComponent, {
     },
   ],
 }).catch(err => console.error(err));
+
